@@ -11,6 +11,7 @@ dependencies {
     implementation(libs.rxandroid)
     implementation(libs.jsoup)
     implementation(libs.injekt)
+    implementation(libs.preference.ktx)
 }
 
 android {
