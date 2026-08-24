@@ -7,6 +7,7 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
     repositories {
         google()
         mavenCentral()
@@ -15,3 +16,4 @@ dependencyResolutionManagement {
 }
 
 include(":library")
+include(":mihonx")

@@ -1,52 +1,21 @@
-import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
-
 plugins {
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.android.library)
+    id("mihon.library.android")
     alias(libs.plugins.maven.publish)
-    alias(libs.plugins.tapmoc)
-    alias(libs.plugins.spotless)
 }
 
 dependencies {
+    api(project(":mihonx"))
+
     implementation(libs.okhttp)
     implementation(libs.rxjava)
     implementation(libs.rxandroid)
     implementation(libs.jsoup)
     implementation(libs.injekt)
-    implementation(libs.kotlinx.serialization.json)
+    compileOnlyApi(libs.kotlinx.serialization.json)
 }
 
-kotlin {
-    @OptIn(ExperimentalAbiValidation::class)
-    abiValidation {}
-}
-
-@Suppress("DEPRECATION")
 android {
     namespace = "eu.kanade.tachiyomi.extensions"
-    compileSdk = 37
-
-    defaultConfig {
-        minSdk = 26
-    }
-}
-
-spotless {
-    val ktlintVersion = libs.ktlint.cli.get().version
-    kotlin {
-        target("src/**/*.kt")
-        ktlint(ktlintVersion)
-    }
-
-    kotlinGradle {
-        target("*.gradle.kts")
-        ktlint(ktlintVersion)
-    }
-}
-
-tapmoc {
-    java(17)
 }
 
 mavenPublishing {
