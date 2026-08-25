@@ -3,3 +3,116 @@ public abstract interface class mihonx/Context {
 	public abstract fun getProtobuf ()Lkotlinx/serialization/protobuf/ProtoBuf;
 }
 
+public abstract interface class mihonx/http/Cookie {
+	public abstract fun getDomain ()Ljava/lang/String;
+	public abstract fun getExpiresAt-UwyO8pc ()J
+	public abstract fun getHttpOnly ()Z
+	public abstract fun getName ()Ljava/lang/String;
+	public abstract fun getPath ()Ljava/lang/String;
+	public abstract fun getSecure ()Z
+	public abstract fun getValue ()Ljava/lang/String;
+}
+
+public abstract interface class mihonx/http/CookieJar {
+	public abstract fun clear ()Z
+	public abstract fun load (Lmihonx/http/HttpUrl;)Ljava/util/List;
+	public abstract fun remove (Lmihonx/http/HttpUrl;)Z
+	public abstract fun save (Lmihonx/http/HttpUrl;Ljava/util/List;)V
+}
+
+public abstract interface class mihonx/http/Headers {
+	public abstract fun get (Ljava/lang/String;)Ljava/lang/String;
+	public abstract fun values (Ljava/lang/String;)Ljava/util/List;
+}
+
+public abstract interface class mihonx/http/HttpClient {
+	public abstract fun call (Lmihonx/http/Request;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getCookieJar ()Lmihonx/http/CookieJar;
+	public abstract fun newBuilder ()Lmihonx/http/HttpClient$Builder;
+}
+
+public abstract interface class mihonx/http/HttpClient$Builder {
+	public abstract fun addInterceptor (Lmihonx/http/Interceptor;)Lmihonx/http/HttpClient$Builder;
+	public abstract fun build ()Lmihonx/http/HttpClient;
+	public abstract fun callTimeout-LRDsOJo (J)Lmihonx/http/HttpClient$Builder;
+	public abstract fun connectTimeout-LRDsOJo (J)Lmihonx/http/HttpClient$Builder;
+	public abstract fun cookieJar (Lmihonx/http/CookieJar;)Lmihonx/http/HttpClient$Builder;
+	public abstract fun readTimeout-LRDsOJo (J)Lmihonx/http/HttpClient$Builder;
+	public abstract fun writeTimeout-LRDsOJo (J)Lmihonx/http/HttpClient$Builder;
+}
+
+public abstract interface class mihonx/http/HttpUrl {
+	public abstract fun getEncodedPath ()Ljava/lang/String;
+	public abstract fun getFragment ()Ljava/lang/String;
+	public abstract fun getHost ()Ljava/lang/String;
+	public abstract fun getPort ()I
+	public abstract fun getQuery ()Ljava/lang/String;
+	public abstract fun getScheme ()Ljava/lang/String;
+	public abstract fun newBuilder ()Lmihonx/http/HttpUrl$Builder;
+	public abstract fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class mihonx/http/HttpUrl$Builder {
+	public abstract fun addPathSegment (Ljava/lang/String;)Lmihonx/http/HttpUrl$Builder;
+	public abstract fun addQueryParameter (Ljava/lang/String;Ljava/lang/String;)Lmihonx/http/HttpUrl$Builder;
+	public abstract fun build ()Lmihonx/http/HttpUrl;
+	public abstract fun encodedPath (Ljava/lang/String;)Lmihonx/http/HttpUrl$Builder;
+	public abstract fun fragment (Ljava/lang/String;)Lmihonx/http/HttpUrl$Builder;
+	public abstract fun host (Ljava/lang/String;)Lmihonx/http/HttpUrl$Builder;
+	public abstract fun port (I)Lmihonx/http/HttpUrl$Builder;
+	public abstract fun query (Ljava/lang/String;)Lmihonx/http/HttpUrl$Builder;
+	public abstract fun scheme (Ljava/lang/String;)Lmihonx/http/HttpUrl$Builder;
+}
+
+public abstract interface class mihonx/http/Interceptor {
+	public abstract fun intercept (Lmihonx/http/Interceptor$Chain;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class mihonx/http/Interceptor$Chain {
+	public abstract fun getRequest ()Lmihonx/http/Request;
+	public abstract fun proceed (Lmihonx/http/Request;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class mihonx/http/Request {
+	public abstract fun getBody ()Lmihonx/http/RequestBody;
+	public abstract fun getHeaders ()Lmihonx/http/Headers;
+	public abstract fun getMethod ()Ljava/lang/String;
+	public abstract fun getUrl ()Lmihonx/http/HttpUrl;
+	public abstract fun newBuilder ()Lmihonx/http/Request$Builder;
+}
+
+public abstract interface class mihonx/http/Request$Builder {
+	public abstract fun body (Ljava/lang/String;Ljava/lang/String;)Lmihonx/http/Request$Builder;
+	public abstract fun body (Lmihonx/http/RequestBody;)Lmihonx/http/Request$Builder;
+	public abstract fun body ([BLjava/lang/String;)Lmihonx/http/Request$Builder;
+	public abstract fun build ()Lmihonx/http/Request;
+	public abstract fun header (Ljava/lang/String;Ljava/lang/String;)Lmihonx/http/Request$Builder;
+	public abstract fun method (Ljava/lang/String;)Lmihonx/http/Request$Builder;
+	public abstract fun url (Ljava/lang/String;)Lmihonx/http/Request$Builder;
+	public abstract fun url (Lmihonx/http/HttpUrl;)Lmihonx/http/Request$Builder;
+}
+
+public abstract interface class mihonx/http/RequestBody {
+	public abstract fun getContentLength ()J
+	public abstract fun getContentType ()Ljava/lang/String;
+	public abstract fun writeTo (Lokio/BufferedSink;)V
+}
+
+public abstract interface class mihonx/http/Response {
+	public abstract fun close ()V
+	public abstract fun getBody ()Lmihonx/http/ResponseBody;
+	public abstract fun getCode ()I
+	public abstract fun getHeaders ()Lmihonx/http/Headers;
+	public abstract fun getMessage ()Ljava/lang/String;
+	public abstract fun getRequest ()Lmihonx/http/Request;
+}
+
+public abstract interface class mihonx/http/ResponseBody {
+	public abstract fun bytes (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun close ()V
+	public abstract fun getContentLength ()J
+	public abstract fun getContentType ()Ljava/lang/String;
+	public abstract fun source ()Lokio/BufferedSource;
+	public abstract fun string (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+

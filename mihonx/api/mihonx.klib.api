@@ -5,7 +5,155 @@
 // - Show manifest properties: true
 // - Show declarations: true
 
-// Library unique name: <tachiyomix:mihonx>
+// Library unique name: <extensions-lib:mihonx>
+abstract fun interface mihonx.http/Interceptor { // mihonx.http/Interceptor|null[0]
+    abstract suspend fun intercept(mihonx.http/Interceptor.Chain): mihonx.http/Response // mihonx.http/Interceptor.intercept|intercept(mihonx.http.Interceptor.Chain){}[0]
+
+    abstract interface Chain { // mihonx.http/Interceptor.Chain|null[0]
+        abstract val request // mihonx.http/Interceptor.Chain.request|{}request[0]
+            abstract fun <get-request>(): mihonx.http/Request // mihonx.http/Interceptor.Chain.request.<get-request>|<get-request>(){}[0]
+
+        abstract suspend fun proceed(mihonx.http/Request): mihonx.http/Response // mihonx.http/Interceptor.Chain.proceed|proceed(mihonx.http.Request){}[0]
+    }
+}
+
+abstract interface mihonx.http/Cookie { // mihonx.http/Cookie|null[0]
+    abstract val domain // mihonx.http/Cookie.domain|{}domain[0]
+        abstract fun <get-domain>(): kotlin/String // mihonx.http/Cookie.domain.<get-domain>|<get-domain>(){}[0]
+    abstract val expiresAt // mihonx.http/Cookie.expiresAt|{}expiresAt[0]
+        abstract fun <get-expiresAt>(): kotlin.time/Duration // mihonx.http/Cookie.expiresAt.<get-expiresAt>|<get-expiresAt>(){}[0]
+    abstract val httpOnly // mihonx.http/Cookie.httpOnly|{}httpOnly[0]
+        abstract fun <get-httpOnly>(): kotlin/Boolean // mihonx.http/Cookie.httpOnly.<get-httpOnly>|<get-httpOnly>(){}[0]
+    abstract val name // mihonx.http/Cookie.name|{}name[0]
+        abstract fun <get-name>(): kotlin/String // mihonx.http/Cookie.name.<get-name>|<get-name>(){}[0]
+    abstract val path // mihonx.http/Cookie.path|{}path[0]
+        abstract fun <get-path>(): kotlin/String // mihonx.http/Cookie.path.<get-path>|<get-path>(){}[0]
+    abstract val secure // mihonx.http/Cookie.secure|{}secure[0]
+        abstract fun <get-secure>(): kotlin/Boolean // mihonx.http/Cookie.secure.<get-secure>|<get-secure>(){}[0]
+    abstract val value // mihonx.http/Cookie.value|{}value[0]
+        abstract fun <get-value>(): kotlin/String // mihonx.http/Cookie.value.<get-value>|<get-value>(){}[0]
+}
+
+abstract interface mihonx.http/CookieJar { // mihonx.http/CookieJar|null[0]
+    abstract fun clear(): kotlin/Boolean // mihonx.http/CookieJar.clear|clear(){}[0]
+    abstract fun load(mihonx.http/HttpUrl): kotlin.collections/List<mihonx.http/Cookie> // mihonx.http/CookieJar.load|load(mihonx.http.HttpUrl){}[0]
+    abstract fun remove(mihonx.http/HttpUrl): kotlin/Boolean // mihonx.http/CookieJar.remove|remove(mihonx.http.HttpUrl){}[0]
+    abstract fun save(mihonx.http/HttpUrl, kotlin.collections/List<mihonx.http/Cookie>) // mihonx.http/CookieJar.save|save(mihonx.http.HttpUrl;kotlin.collections.List<mihonx.http.Cookie>){}[0]
+}
+
+abstract interface mihonx.http/Headers { // mihonx.http/Headers|null[0]
+    abstract fun get(kotlin/String): kotlin/String? // mihonx.http/Headers.get|get(kotlin.String){}[0]
+    abstract fun values(kotlin/String): kotlin.collections/List<kotlin/String> // mihonx.http/Headers.values|values(kotlin.String){}[0]
+}
+
+abstract interface mihonx.http/HttpClient { // mihonx.http/HttpClient|null[0]
+    abstract val cookieJar // mihonx.http/HttpClient.cookieJar|{}cookieJar[0]
+        abstract fun <get-cookieJar>(): mihonx.http/CookieJar // mihonx.http/HttpClient.cookieJar.<get-cookieJar>|<get-cookieJar>(){}[0]
+
+    abstract fun newBuilder(): mihonx.http/HttpClient.Builder // mihonx.http/HttpClient.newBuilder|newBuilder(){}[0]
+    abstract suspend fun call(mihonx.http/Request): mihonx.http/Response // mihonx.http/HttpClient.call|call(mihonx.http.Request){}[0]
+
+    abstract interface Builder { // mihonx.http/HttpClient.Builder|null[0]
+        abstract fun addInterceptor(mihonx.http/Interceptor): mihonx.http/HttpClient.Builder // mihonx.http/HttpClient.Builder.addInterceptor|addInterceptor(mihonx.http.Interceptor){}[0]
+        abstract fun build(): mihonx.http/HttpClient // mihonx.http/HttpClient.Builder.build|build(){}[0]
+        abstract fun callTimeout(kotlin.time/Duration): mihonx.http/HttpClient.Builder // mihonx.http/HttpClient.Builder.callTimeout|callTimeout(kotlin.time.Duration){}[0]
+        abstract fun connectTimeout(kotlin.time/Duration): mihonx.http/HttpClient.Builder // mihonx.http/HttpClient.Builder.connectTimeout|connectTimeout(kotlin.time.Duration){}[0]
+        abstract fun cookieJar(mihonx.http/CookieJar): mihonx.http/HttpClient.Builder // mihonx.http/HttpClient.Builder.cookieJar|cookieJar(mihonx.http.CookieJar){}[0]
+        abstract fun readTimeout(kotlin.time/Duration): mihonx.http/HttpClient.Builder // mihonx.http/HttpClient.Builder.readTimeout|readTimeout(kotlin.time.Duration){}[0]
+        abstract fun writeTimeout(kotlin.time/Duration): mihonx.http/HttpClient.Builder // mihonx.http/HttpClient.Builder.writeTimeout|writeTimeout(kotlin.time.Duration){}[0]
+    }
+}
+
+abstract interface mihonx.http/HttpUrl { // mihonx.http/HttpUrl|null[0]
+    abstract val encodedPath // mihonx.http/HttpUrl.encodedPath|{}encodedPath[0]
+        abstract fun <get-encodedPath>(): kotlin/String // mihonx.http/HttpUrl.encodedPath.<get-encodedPath>|<get-encodedPath>(){}[0]
+    abstract val fragment // mihonx.http/HttpUrl.fragment|{}fragment[0]
+        abstract fun <get-fragment>(): kotlin/String? // mihonx.http/HttpUrl.fragment.<get-fragment>|<get-fragment>(){}[0]
+    abstract val host // mihonx.http/HttpUrl.host|{}host[0]
+        abstract fun <get-host>(): kotlin/String // mihonx.http/HttpUrl.host.<get-host>|<get-host>(){}[0]
+    abstract val port // mihonx.http/HttpUrl.port|{}port[0]
+        abstract fun <get-port>(): kotlin/Int // mihonx.http/HttpUrl.port.<get-port>|<get-port>(){}[0]
+    abstract val query // mihonx.http/HttpUrl.query|{}query[0]
+        abstract fun <get-query>(): kotlin/String? // mihonx.http/HttpUrl.query.<get-query>|<get-query>(){}[0]
+    abstract val scheme // mihonx.http/HttpUrl.scheme|{}scheme[0]
+        abstract fun <get-scheme>(): kotlin/String // mihonx.http/HttpUrl.scheme.<get-scheme>|<get-scheme>(){}[0]
+
+    abstract fun newBuilder(): mihonx.http/HttpUrl.Builder // mihonx.http/HttpUrl.newBuilder|newBuilder(){}[0]
+    abstract fun toString(): kotlin/String // mihonx.http/HttpUrl.toString|toString(){}[0]
+
+    abstract interface Builder { // mihonx.http/HttpUrl.Builder|null[0]
+        abstract fun addPathSegment(kotlin/String): mihonx.http/HttpUrl.Builder // mihonx.http/HttpUrl.Builder.addPathSegment|addPathSegment(kotlin.String){}[0]
+        abstract fun addQueryParameter(kotlin/String, kotlin/String?): mihonx.http/HttpUrl.Builder // mihonx.http/HttpUrl.Builder.addQueryParameter|addQueryParameter(kotlin.String;kotlin.String?){}[0]
+        abstract fun build(): mihonx.http/HttpUrl // mihonx.http/HttpUrl.Builder.build|build(){}[0]
+        abstract fun encodedPath(kotlin/String): mihonx.http/HttpUrl.Builder // mihonx.http/HttpUrl.Builder.encodedPath|encodedPath(kotlin.String){}[0]
+        abstract fun fragment(kotlin/String?): mihonx.http/HttpUrl.Builder // mihonx.http/HttpUrl.Builder.fragment|fragment(kotlin.String?){}[0]
+        abstract fun host(kotlin/String): mihonx.http/HttpUrl.Builder // mihonx.http/HttpUrl.Builder.host|host(kotlin.String){}[0]
+        abstract fun port(kotlin/Int): mihonx.http/HttpUrl.Builder // mihonx.http/HttpUrl.Builder.port|port(kotlin.Int){}[0]
+        abstract fun query(kotlin/String?): mihonx.http/HttpUrl.Builder // mihonx.http/HttpUrl.Builder.query|query(kotlin.String?){}[0]
+        abstract fun scheme(kotlin/String): mihonx.http/HttpUrl.Builder // mihonx.http/HttpUrl.Builder.scheme|scheme(kotlin.String){}[0]
+    }
+}
+
+abstract interface mihonx.http/Request { // mihonx.http/Request|null[0]
+    abstract val body // mihonx.http/Request.body|{}body[0]
+        abstract fun <get-body>(): mihonx.http/RequestBody? // mihonx.http/Request.body.<get-body>|<get-body>(){}[0]
+    abstract val headers // mihonx.http/Request.headers|{}headers[0]
+        abstract fun <get-headers>(): mihonx.http/Headers // mihonx.http/Request.headers.<get-headers>|<get-headers>(){}[0]
+    abstract val method // mihonx.http/Request.method|{}method[0]
+        abstract fun <get-method>(): kotlin/String // mihonx.http/Request.method.<get-method>|<get-method>(){}[0]
+    abstract val url // mihonx.http/Request.url|{}url[0]
+        abstract fun <get-url>(): mihonx.http/HttpUrl // mihonx.http/Request.url.<get-url>|<get-url>(){}[0]
+
+    abstract fun newBuilder(): mihonx.http/Request.Builder // mihonx.http/Request.newBuilder|newBuilder(){}[0]
+
+    abstract interface Builder { // mihonx.http/Request.Builder|null[0]
+        abstract fun body(kotlin/ByteArray, kotlin/String?): mihonx.http/Request.Builder // mihonx.http/Request.Builder.body|body(kotlin.ByteArray;kotlin.String?){}[0]
+        abstract fun body(kotlin/String, kotlin/String?): mihonx.http/Request.Builder // mihonx.http/Request.Builder.body|body(kotlin.String;kotlin.String?){}[0]
+        abstract fun body(mihonx.http/RequestBody): mihonx.http/Request.Builder // mihonx.http/Request.Builder.body|body(mihonx.http.RequestBody){}[0]
+        abstract fun build(): mihonx.http/Request // mihonx.http/Request.Builder.build|build(){}[0]
+        abstract fun header(kotlin/String, kotlin/String): mihonx.http/Request.Builder // mihonx.http/Request.Builder.header|header(kotlin.String;kotlin.String){}[0]
+        abstract fun method(kotlin/String): mihonx.http/Request.Builder // mihonx.http/Request.Builder.method|method(kotlin.String){}[0]
+        abstract fun url(kotlin/String): mihonx.http/Request.Builder // mihonx.http/Request.Builder.url|url(kotlin.String){}[0]
+        abstract fun url(mihonx.http/HttpUrl): mihonx.http/Request.Builder // mihonx.http/Request.Builder.url|url(mihonx.http.HttpUrl){}[0]
+    }
+}
+
+abstract interface mihonx.http/RequestBody { // mihonx.http/RequestBody|null[0]
+    abstract val contentLength // mihonx.http/RequestBody.contentLength|{}contentLength[0]
+        abstract fun <get-contentLength>(): kotlin/Long // mihonx.http/RequestBody.contentLength.<get-contentLength>|<get-contentLength>(){}[0]
+    abstract val contentType // mihonx.http/RequestBody.contentType|{}contentType[0]
+        abstract fun <get-contentType>(): kotlin/String? // mihonx.http/RequestBody.contentType.<get-contentType>|<get-contentType>(){}[0]
+
+    abstract fun writeTo(okio/BufferedSink) // mihonx.http/RequestBody.writeTo|writeTo(okio.BufferedSink){}[0]
+}
+
+abstract interface mihonx.http/Response { // mihonx.http/Response|null[0]
+    abstract val body // mihonx.http/Response.body|{}body[0]
+        abstract fun <get-body>(): mihonx.http/ResponseBody? // mihonx.http/Response.body.<get-body>|<get-body>(){}[0]
+    abstract val code // mihonx.http/Response.code|{}code[0]
+        abstract fun <get-code>(): kotlin/Int // mihonx.http/Response.code.<get-code>|<get-code>(){}[0]
+    abstract val headers // mihonx.http/Response.headers|{}headers[0]
+        abstract fun <get-headers>(): mihonx.http/Headers // mihonx.http/Response.headers.<get-headers>|<get-headers>(){}[0]
+    abstract val message // mihonx.http/Response.message|{}message[0]
+        abstract fun <get-message>(): kotlin/String // mihonx.http/Response.message.<get-message>|<get-message>(){}[0]
+    abstract val request // mihonx.http/Response.request|{}request[0]
+        abstract fun <get-request>(): mihonx.http/Request // mihonx.http/Response.request.<get-request>|<get-request>(){}[0]
+
+    abstract fun close() // mihonx.http/Response.close|close(){}[0]
+}
+
+abstract interface mihonx.http/ResponseBody { // mihonx.http/ResponseBody|null[0]
+    abstract val contentLength // mihonx.http/ResponseBody.contentLength|{}contentLength[0]
+        abstract fun <get-contentLength>(): kotlin/Long // mihonx.http/ResponseBody.contentLength.<get-contentLength>|<get-contentLength>(){}[0]
+    abstract val contentType // mihonx.http/ResponseBody.contentType|{}contentType[0]
+        abstract fun <get-contentType>(): kotlin/String? // mihonx.http/ResponseBody.contentType.<get-contentType>|<get-contentType>(){}[0]
+
+    abstract fun close() // mihonx.http/ResponseBody.close|close(){}[0]
+    abstract fun source(): okio/BufferedSource // mihonx.http/ResponseBody.source|source(){}[0]
+    abstract suspend fun bytes(): kotlin/ByteArray // mihonx.http/ResponseBody.bytes|bytes(){}[0]
+    abstract suspend fun string(): kotlin/String // mihonx.http/ResponseBody.string|string(){}[0]
+}
+
 abstract interface mihonx/Context { // mihonx/Context|null[0]
     abstract val json // mihonx/Context.json|{}json[0]
         abstract fun <get-json>(): kotlinx.serialization.json/Json // mihonx/Context.json.<get-json>|<get-json>(){}[0]
